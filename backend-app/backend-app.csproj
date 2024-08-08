@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
+    <None Include="../../.certificates/localhost*" CopyToOutputDirectory="PreserveNewest"/>
+    <None Include="settings.json" CopyToOutputDirectory="PreserveNewest"/>
+    <None Include="wwwroot/*.*" CopyToOutputDirectory="PreserveNewest"/>
+    <None Include="wwwroot/images/*.*" CopyToOutputDirectory="PreserveNewest"/>
+    <None Include="wwwroot/scripts/*.*" CopyToOutputDirectory="PreserveNewest"/>
+  </ItemGroup>
+
+</Project>

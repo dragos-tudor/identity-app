@@ -1,0 +1,24 @@
+{
+	"image": "ghcr.io/dragos-tudor/dotnet-deno:8.0.303-1.45.2",
+  "customizations": {
+    "vscode": {
+	    "extensions": [
+        "ms-dotnettools.csharp",
+        "icsharpcode.ilspy-vscode",
+        "denoland.vscode-deno",
+        "appulate.filewatcher"
+      ]
+	  }
+	},
+  "mounts": [
+  	{"source": "nuget", "target": "/home/app/.nuget", "type": "volume"}
+  ],
+  "containerEnv": { 
+		"DATA_PROTECTION_KEY": "HFm8fYbLyEarjjlGBj5r9Q==",
+		"SHELL": "/bin/bash" 
+	},
+	"runArgs": [
+		"--name=identity-app",
+		"--hostname=identity"
+	]
+}

@@ -1,0 +1,3 @@
+[*.Tests.cs]
+dotnet_diagnostic.ASP0016.severity = none # ASPNET Code analysis: Do not return a value from RequestDelegate
+dotnet_diagnostic.CA1707.severity = none # Naming: Identifiers should not contain underscores

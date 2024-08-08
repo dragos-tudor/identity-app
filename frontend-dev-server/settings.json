@@ -1,0 +1,9 @@
+{
+  "serverOptions": {
+    "hostname": "127.0.0.1",
+    "certPath": "/workspaces/identity-app/.certificates/localhost.pem",
+    "keyPath": "/workspaces/identity-app/.certificates/localhost-key.pem",
+    "port": 5090,
+    "secure": true
+  }
+}

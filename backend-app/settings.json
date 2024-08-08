@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/appsettings",
+  "Logging": {
+    "LogLevel": {
+      "Microsoft": "Warning",
+      "Security": "Debug"
+    }
+  },
+  "Kestrel": {
+    "Endpoints": {
+      "Https": {
+        "Url": "https://localhost:5050",
+        "Certificate": {
+          "Path": "/workspaces/identity-app/.certificates/localhost.pem",
+          "KeyPath": "/workspaces/identity-app/.certificates/localhost-key.pem"
+        }
+      }
+    }
+  },
+  "ResponseCacheOptions": {
+    "IntervalSeconds": "03:00:00"
+  }
+}

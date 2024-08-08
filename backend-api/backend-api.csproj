@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
+    <ProjectReference Include="../backend-api-endpoints/backend-api-endpoints.csproj"/>
+    <PackageReference Include="Security.Authentication.Cookies"/>
+    <PackageReference Include="Security.Authentication.Google"/>
+    <PackageReference Include="Security.Authentication.Facebook"/>
+    <PackageReference Include="Security.Authentication.Twitter"/>
+    <PackageReference Include="Security.Authorization"/>
+    <None Include="../../.certificates/localhost*" CopyToOutputDirectory="PreserveNewest"/>
+    <None Include="settings.json" CopyToOutputDirectory="PreserveNewest"/>
+    <None Include="secrets.json" CopyToOutputDirectory="PreserveNewest"/>
+  </ItemGroup>
+
+</Project>
