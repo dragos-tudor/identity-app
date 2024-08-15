@@ -1,7 +1,7 @@
-### Identity app purposes
+### Identity app [wip]
 Identity SPA application *use* and *test* *functional* [C#](https://github.com/dragos-tudor/backend-security)/[JS](https://github.com/dragos-tudor/frontend-rendering) libraries in *real-world* scenarios.
-- backend: main focus is on cookies and OAuth2 authentications.
-- frontend: main focus is on rendering, routing and centralized/redux states for jsx components in spa application.
+- backend: main focus is on cookies and OAuth2 authentications.w
+- frontend: main focus is on rendering, routing and states management using jsx components.
 
 ### Identity app libraries
 - [ASPNET-like security libraries](https://github.com/dragos-tudor/backend-security).
