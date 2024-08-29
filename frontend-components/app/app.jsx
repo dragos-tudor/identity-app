@@ -7,7 +7,7 @@ import { Routes } from "../routes/routes.jsx"
 import { useApiOptions, useFetchApi } from "../services/using.js"
 import { States } from "../states/states.jsx"
 import { Timer } from "../timer/timer.jsx";
-import { startEffect } from "./starting.js"
+import { startEffect, startApp } from "./starting.js"
 const { Router } = await import("/scripts/routing.js")
 const { setEffects, setStates, useEffect, useState } = await import("/scripts/rendering.js")
 
@@ -18,7 +18,9 @@ export const App = ({"fetch-api": _fetchApi, location: _location}, elem) =>
   const location = resolveLocation(_location)
   const [isStarting, setIsStarting] = useState(setStates(elem), "is-starting", true, [])
 
-  useEffect(setEffects(elem), "start-app", () => startEffect(elem, fetchApi, apiOptions, location, setIsStarting), [])
+  const start = () => startApp(elem, fetchApi, apiOptions, location)
+  useEffect(setEffects(elem), "start-app", () => startEffect(elem, start, setIsStarting), [])
+
   return (
     <>
       <style css={css}></style>

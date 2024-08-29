@@ -16,9 +16,9 @@ export const startApp = async (elem, fetchApi, apiOptions, location) =>
   return data
 }
 
-export const startEffect = async (elem, fetchApi, apiOptions, location, setIsStarting) =>
+export const startEffect = async (elem, startApp, setIsStarting) =>
 {
-  const result = await startApp(elem, fetchApi, apiOptions, location)
+  const result = await startApp()
   setIsStarting(false)
   update(elem)
   return result

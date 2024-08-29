@@ -902,8 +902,8 @@ const startApp = async (elem, fetchApi, apiOptions, location1)=>{
     navigate3(elem, resolveAuthenticatedUri(location1));
     return data;
 };
-const startEffect = async (elem, fetchApi, apiOptions, location1, setIsStarting)=>{
-    const result = await startApp(elem, fetchApi, apiOptions, location1);
+const startEffect = async (elem, startApp, setIsStarting)=>{
+    const result = await startApp();
     setIsStarting(false);
     update5(elem);
     return result;
@@ -915,7 +915,8 @@ const App = ({ "fetch-api": _fetchApi, location: _location }, elem)=>{
     const fetchApi = useFetchApi(elem, _fetchApi);
     const location1 = resolveLocation(_location);
     const [isStarting, setIsStarting] = useState3(setStates3(elem), "is-starting", true, []);
-    useEffect3(setEffects3(elem), "start-app", ()=>startEffect(elem, fetchApi, apiOptions, location1, setIsStarting), []);
+    const start = ()=>startApp(elem, fetchApi, apiOptions, location1);
+    useEffect3(setEffects3(elem), "start-app", ()=>startEffect(elem, start, setIsStarting), []);
     return React.createElement(React.Fragment, null, React.createElement("style", {
         css: css15
     }), React.createElement(States, null), React.createElement(Router, {

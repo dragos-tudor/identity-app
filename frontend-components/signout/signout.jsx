@@ -9,7 +9,7 @@ export const Signout = ({"api-options": _apiOptions, "fetch-api": _fetchApi, loc
   const fetchApi = useFetchApi(elem, _fetchApi)
   const labels = useLabels(elem, SignoutLabels.name, SignoutLabels)
   const location = resolveLocation(_location)
-  const signout = () => signoutAccount(elem, fetchApi, apiOptions, location)
 
+  const signout = () => signoutAccount(elem, fetchApi, apiOptions, location)
   return <button class="signout" onclick={signout}>{labels["signout"]}</button>
 }
