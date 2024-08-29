@@ -1,0 +1,10 @@
+
+.header-title {
+  font-family: var(--ff-serif);
+  text-transform: uppercase;
+  border: 0;
+}
+
+.header-title:hover, .header-title:focus {
+  color: var(--second-accent-color);
+}

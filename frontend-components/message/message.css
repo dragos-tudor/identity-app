@@ -1,0 +1,16 @@
+
+.message {
+  display: inline-block;
+  padding: 0.5rem;
+  background-color: var(--neutral-light-color);
+  border: thin solid var(--accent-color);
+}
+
+.message-title {
+  text-transform: uppercase;
+}
+
+.message-content {
+  padding: 0 1rem;
+  color: var(--text-color);
+}

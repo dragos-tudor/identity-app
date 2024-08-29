@@ -1,41 +1,26 @@
-import { selectAuthenticated } from "../../frontend-shared/store/selectors.js"
-import { useSelector } from "../../frontend-shared/extensions/extending.js"
-import { Language } from "../language/language.jsx"
+import { Language } from "../languages/language.jsx"
 import { NavLinks } from "../navlinks/navlinks.jsx"
-import { Logout } from "../logout/logout.jsx"
+import { HeaderLogo } from "../header-logo/header-logo.jsx"
 
-export const Header = (props, elem) =>
-{
-  const authenticated = useSelector(elem, "authenticated", selectAuthenticated)
-
-  return (<>
+export const Header = () =>
+  <>
     <style css={css} ></style>
-    <h2>
-      <a href="/" class="header-logo">security sample</a>
-    </h2>
-    <Language class="header-language"></Language>
-    <NavLinks class="header-navlinks"></NavLinks>
-    {authenticated && <Logout></Logout>}
-  </>)
-}
+    <HeaderLogo class="header-logo"></HeaderLogo>
+    <Language class="language"></Language>
+    <NavLinks class="navlinks"></NavLinks>
+  </>
 
 
 const css = `
-header {
+.header {
   display: flex;
-  align-items: end;
+  align-items: center;
   gap: 2rem;
   padding: 2rem;
   background-color: var(--neutral-dark-color);
 }
 
-.header-logo {
-  font-family: var(--ff-serif);
-  color: var(--label-color);
-  text-transform: uppercase;
-}
-
-.header-language {
+.header .language {
   flex: 1 1;
   text-align: right;
 }`

@@ -1,23 +1,25 @@
-import { RoutePaths } from "../../frontend-shared/route-paths/route.paths.js"
-import { isLoginPath, isRootPath } from "../../frontend-shared/route-paths/verifying.js"
-import { getLocationPathName, getLocationPathNameAndSearch } from "../../frontend-shared/locations/getting.js"
-import { getRedirectedLogin } from "../../frontend-shared/redirections/getting.js"
-import { createAuthenticatedAction } from "../../frontend-shared/store/actions.js"
-import { authenticatedAccountApi } from "../../frontend-proxy/mod.js"
-import { isAuthenticationSuccedded } from "./verifying.js";
+import { getAccountStatusApi, isFetchApiError } from "../../frontend-api/mod.js"
+import { createSetAccountStatusAction } from "../../frontend-states/mod.js"
+import { handleFetchApiError } from "../errors/handling.js"
+import { resolveAuthenticatedUri } from "../uris/resolving.js"
+const { navigate } = await import("/scripts/routing.js")
+const { dispatchAction } = await import("/scripts/states.js")
+const { update } = await import("/scripts/rendering.js")
 
-export const startApp = async (fetchApi, dispatchAction, navigate, location = globalThis.location) =>
+export const startApp = async (elem, fetchApi, apiOptions, location) =>
 {
-  const [authenticated, error] = await authenticatedAccountApi(fetchApi)
-  if (!isAuthenticationSuccedded(authenticated, error))
-    isLoginPath(location)?
-      navigate(getLocationPathNameAndSearch(location)):
-      navigate(getRedirectedLogin(location))
-  if (!isAuthenticationSuccedded(authenticated, error)) return [authenticated, error]
+  const [data, error] = await getAccountStatusApi(fetchApi, apiOptions, location)
+  if (isFetchApiError(error)) return handleFetchApiError(elem, error, location)
 
-  dispatchAction(createAuthenticatedAction(authenticated))
-  isLoginPath(location) || isRootPath(location)?
-    navigate(RoutePaths.home):
-    navigate(getLocationPathName(location))
-  return [authenticated]
+  dispatchAction(elem, createSetAccountStatusAction(true))
+  navigate(elem, resolveAuthenticatedUri(location))
+  return data
+}
+
+export const startEffect = async (elem, fetchApi, apiOptions, location, setIsStarting) =>
+{
+  const result = await startApp(elem, fetchApi, apiOptions, location)
+  setIsStarting(false)
+  update(elem)
+  return result
 }

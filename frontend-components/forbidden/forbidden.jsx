@@ -1,31 +1,38 @@
-import { resolveLocation } from "../../frontend-shared/locations/resolving.js"
-import { useLabels } from "../../frontend-shared/services/using.js"
+import { resolveLocation } from "../../frontend-locations/mod.js"
 import { getErrorDescription } from "./getting.js"
+import { getHomePath } from "../routes/getting.js"
+import { useLabels } from "../services/using.js"
+import { ForbiddenLabels } from "./labels/labels.en.js"
 const { NavLink } = await import("/scripts/routing.js")
 
-export const Forbidden = (props) =>
+export const Forbidden = (props, elem) =>
 {
-  const labels = useLabels(elem)
+  const labels = useLabels(elem, ForbiddenLabels.name, ForbiddenLabels)
   const location = resolveLocation(props.location)
-  const error = getErrorDescription(location)
+  const description = getErrorDescription(location ?? {})
 
   return <>
     <style css={css}></style>
-    <h3>{labels["accessDenied"]}</h3>
 
-    <p>{labels["unauthorized"]}</p>
-    <p>{error}</p>
+    <section class="forbidden-section">
+      <h3 class="forbidden-title error-color">{labels["forbidden-title"]}</h3>
+      <p class="forbidden-description">{description}</p>
+    </section>
 
-    <NavLink href="/home">{labels["gotoHome"]}</NavLink>
+    <NavLink class="forbidden-link" href={getHomePath()}>{labels["forbidden-link"]}</NavLink>
   </>
 }
 
 const css = `
-forbidden {
+.forbidden {
   display: block;
   margin: 3rem;
 }
 
-forbidden h3 {
-  color: var(--error-color)
+.forbidden-section {
+  margin-block: 1.5rem 3rem;
+}
+
+.forbidden-description {
+  padding: var(--padding);
 }`

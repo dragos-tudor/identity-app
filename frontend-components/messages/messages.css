@@ -1,0 +1,9 @@
+
+.messages {
+  display: grid;
+  row-gap: 0.5rem;
+  position: absolute;
+  bottom: 2rem;
+  right: 1rem;
+  padding: 1rem;
+}

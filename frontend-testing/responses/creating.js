@@ -1,16 +1,14 @@
 import { getJsonHeaders, getOkState } from "./getting.js"
-import { stringifyBody } from "./stringify.js"
+import { stringifyBody } from "./stringify.js";
 
-const createResponseInit = (body, contentType, status) => ({
-  headers: getJsonHeaders(body, contentType),
-  ok: getOkState(status),
-  status
-})
+const createResponseInit = (body, status, contentType) => ({headers: getJsonHeaders(body, contentType), ok: getOkState(status), status})
 
-export const createErrorJsonResponse = (status) =>
-  createJsonResponse(null, "", status)
+export const createErrorJsonResponse = (data, status = 400) => createJsonResponse(data, status)
 
-export const createJsonResponse = (body, contentType = "application/json", status = 200) => new Response(
-  stringifyBody(body),
-  createResponseInit(body, contentType, status)
-)
+export const createProblemDetailsJsonResponse = (data, status = 400) => createJsonResponse(data, status, "application/problem+json")
+
+export const createJsonResponse = (data, status = 200, contentType = "application/json") =>
+{
+  const body = stringifyBody(data)
+  return new Response(body, createResponseInit(body, status, contentType))
+}

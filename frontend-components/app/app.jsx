@@ -1,41 +1,56 @@
-import { resolveLocation } from "../../frontend-shared/locations/resolving.js"
-import { useFetchApi } from "../../frontend-shared/services/using.js"
-import { dispatchAction, navigate, usePostEffect, useState } from "../../frontend-shared/extensions/extending.js"
-import { spinner } from "../../images/icons.jsx"
-import { Header } from "../header/header.jsx"
+import { spinner } from "../../frontend-app/images/icons.jsx"
+import { resolveLocation } from "../../frontend-locations/mod.js"
 import { Footer } from "../footer/footer.jsx"
+import { Header } from "../header/header.jsx"
+import { Messages } from "../messages/messages.jsx"
 import { Routes } from "../routes/routes.jsx"
-import { startApp } from "./starting.js"
+import { useApiOptions, useFetchApi } from "../services/using.js"
+import { States } from "../states/states.jsx"
+import { Timer } from "../timer/timer.jsx";
+import { startEffect } from "./starting.js"
 const { Router } = await import("/scripts/routing.js")
+const { setEffects, setStates, useEffect, useState } = await import("/scripts/rendering.js")
 
-export const Application = (props, elem) =>
+export const App = ({"fetch-api": _fetchApi, location: _location}, elem) =>
 {
-  const fetchApi = useFetchApi(elem, props)
-  const location = resolveLocation(props.location)
-  const [starting, setStarting] = useState(elem, "starting", true, [])
+  const apiOptions = useApiOptions(elem)
+  const fetchApi = useFetchApi(elem, _fetchApi)
+  const location = resolveLocation(_location)
+  const [isStarting, setIsStarting] = useState(setStates(elem), "is-starting", true, [])
 
-  usePostEffect(elem, "start-app", async () => {
-      await startApp(fetchApi, dispatchAction(elem), navigate(elem), location)
-      setStarting(false)
-    },
-  [])
+  useEffect(setEffects(elem), "start-app", () => startEffect(elem, fetchApi, apiOptions, location, setIsStarting), [])
+  return (
+    <>
+      <style css={css}></style>
+      <States></States>
 
-  return <>
-    <style css={css}></style>
-    <Router no-skip>
-      <Header></Header>
-      <main>
-        <div hidden={!starting} class="app-spinner">{spinner}</div>
-        <Routes></Routes>
-      </main>
-      <Footer></Footer>
-    </Router>
-  </>
+      <Router no-skip>
+        <Header class="header"></Header>
+        <main>
+          <div hidden={!isStarting} class="app-spinner">{spinner}</div>
+          <Routes></Routes>
+        </main>
+        <Footer class="footer"></Footer>
+      </Router>
+
+      <Timer>
+        <Messages class="messages" no-skip></Messages>
+      </Timer>
+    </>
+  )
 }
 
 const css = `
-application {
+.app {
   height: 100vh;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  justify-self: start;
+  align-self: center;
 }
 
 router {
@@ -44,23 +59,12 @@ router {
   height: inherit;
 }
 
-main {
-  height: 100%;
-  justify-self: center;
-  align-self: center;
-}
-
-routes, route, suspense {
+routes, route {
   display: block;
   height: inherit;
 }
 
-main {
-  display: grid;
-  justify-items: center;
-  align-items: center;
-}
-
-.app-spinner svg  {
+.app-spinner svg {
   height: 5rem;
-}`
+}
+`

@@ -1,9 +1,13 @@
 
-forbidden {
+.forbidden {
   display: block;
   margin: 3rem;
 }
 
-forbidden h3 {
-  color: var(--error-color)
+.forbidden-section {
+  margin-block: 1.5rem 3rem;
+}
+
+.forbidden-description {
+  padding: var(--padding);
 }

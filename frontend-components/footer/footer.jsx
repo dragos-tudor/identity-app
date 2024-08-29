@@ -1,34 +1,19 @@
-import { github, linkedin, youtube } from "../../images/icons.jsx"
+import { Footer_Me } from "../footer-me/footer-me.jsx"
+import { Footer_Socials } from "../footer-socials/footer-socials.jsx"
 
 export const Footer = () =>
   <>
     <style css={css}></style>
-    <section class="footer social-icons">
-      <a class="footer-social-icon" href="https://github.com/dragos-tudor" target="_blank">
-        {github}
-      </a>
-      <a class="footer-social-icon" href="https://linkedin.com/in/dragos-tudor-marian" target="_blank">
-        {linkedin}
-      </a>
-      <a class="footer-social-icon" href="https://youtube.com/@dragos-tudor" target="_blank">
-        {youtube}
-      </a>
-    </section>
-    <div class="footer-me">dragos.tudor - 2024</div>
+    <Footer_Socials class="footer-socials"></Footer_Socials>
+    <Footer_Me class="footer-me"></Footer_Me>
   </>
 
 const css = `
-footer {
-  padding-block: 2rem 3rem;
-  text-align: center;
+.footer {
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: 1rem;
+  justify-items: center;
+  padding-block: 0.5rem;
   background-color: var(--neutral-dark-color);
-}
-
-.footer-social-icon {
-  margin-inline: 0.5rem 0.5rem;
-  font-size: 4rem;
-}
-
-.footer-me {
-  margin-top: 1rem;
 }`

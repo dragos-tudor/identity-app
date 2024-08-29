@@ -1,0 +1,16 @@
+
+.signin-cookies {
+  display: grid;
+  grid-template-columns: max-content 25rem;
+  align-items: center;
+  column-gap: 1rem;
+  row-gap: 1rem;
+}
+
+.signin-cookies label {
+  justify-self: end;
+}
+
+.signin-cookies .signin {
+  grid-column: 1 / span 2;
+}

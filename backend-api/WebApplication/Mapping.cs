@@ -7,8 +7,8 @@ partial class ApiFuncs
   {
     app.MapPost("/accounts/signin", SignInAccount);
     app.MapPost("/accounts/signout", SignOutAccount).RequireAuthorization();
-    app.MapGet("/accounts/authenticated", AuthenticatedAccount);
-    app.MapGet("/users", GetUserInfo).RequireAuthorization();
+    app.MapGet("/accounts/status", GetAccountStatus);
+    app.MapGet("/users", GetUser).RequireAuthorization();
 
     app.MapFacebook(ResolveService<FacebookOptions>(app.Services), SignInCookie);
     app.MapGoogle(ResolveService<GoogleOptions>(app.Services), SignInCookie);

@@ -1,2 +1,2 @@
 
-export const createContextOptions = (cwd) => ({ context: {cwd} })
+export const createContextOptions = (cwd, transpilerOptions = {}) => ({ context: {cwd, transpilerOptions}})

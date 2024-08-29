@@ -1,4 +1,6 @@
 
-.navlinks-link {
-  margin-left: 1rem
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }

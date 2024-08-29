@@ -1,0 +1,10 @@
+
+.auth-providers {
+  display: grid;
+  grid-template-columns: max-content;
+  row-gap: 1rem;
+}
+
+.auth-provider {
+  margin-left: 0.5rem;
+}

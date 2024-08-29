@@ -27,23 +27,23 @@ const validateElement = (elem, props)=>{
 const isPropEquality = (props, elem)=>(propName)=>propName === "className" ? elem[propName]?.includes(props[propName]) : elem[propName] === props[propName];
 const isPropsEquality = (props)=>(elem)=>Object.keys(props).every(isPropEquality(props, elem));
 const getByProps = (elem, props)=>validateElement(findHtmlDescendant(elem, isPropsEquality(props)), props);
-const getByClass = (elem, value, props)=>getByProps(elem, {
+const getByClass = (elem, value, props = {})=>getByProps(elem, {
         ...props,
         className: value
     });
-const getByPlaceholder = (elem, value, props)=>getByProps(elem, {
+const getByPlaceholder = (elem, value, props = {})=>getByProps(elem, {
         ...props,
         placeholder: value
     });
-const getByRole = (elem, value, props)=>getByProps(elem, {
+const getByRole = (elem, value, props = {})=>getByProps(elem, {
         ...props,
         role: value
     });
-const getByTag = (elem, value, props)=>getByProps(elem, {
+const getByTag = (elem, value, props = {})=>getByProps(elem, {
         ...props,
         tagName: value?.toUpperCase()
     });
-const getByType = (elem, value, props)=>getByProps(elem, {
+const getByType = (elem, value, props = {})=>getByProps(elem, {
         ...props,
         type: value
     });
@@ -86,10 +86,7 @@ const getEventOptions = (detail)=>({
         detail
     });
 const createEvent = (eventName, data)=>new CustomEvent(eventName, getEventOptions(data));
-const fireEvent = (elem, eventName, data)=>{
-    elem.addEventListener(eventName, ()=>{});
-    return elem.dispatchEvent(createEvent(eventName, data));
-};
+const fireEvent = (elem, eventName, data)=> elem.dispatchEvent(createEvent(eventName, data));
 const clickElement = (elem)=>elem.type === "submit" ? fireEvent(elem, "submit") : fireEvent(elem, "click");
 const clickElementAndWait = async (elem)=>{
     clickElement(elem);
@@ -99,10 +96,10 @@ const validateInputElement = (elem)=>{
     if (!elem) throw new Error(`Element '${elem.tagName}' should be input.`);
     return elem;
 };
-const writeElementValue = (elem, value)=>{
+const writeElementValue = (elem, value, event)=>{
     validateInputElement(elem);
     elem.value = value;
-    return fireEvent(elem, "change");
+    return fireEvent(elem, event || "change");
 };
 const user = {
     click: clickElement,

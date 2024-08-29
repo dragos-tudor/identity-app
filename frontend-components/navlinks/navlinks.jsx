@@ -1,31 +1,33 @@
-import { useLabels } from "../../frontend-shared/services/using.js"
-import { RoutePaths } from "../../frontend-shared/route-paths/route.paths.js"
-import { selectAuthenticated } from "../../frontend-shared/store/selectors.js"
-import { useSelector } from "../../frontend-shared/extensions/extending.js"
+import { selectIsAuthenticated } from "../../frontend-states/mod.js"
+import { getHomePath, getLoginPath, getContactPath } from "../routes/getting.js"
+import { useLabels } from "../services/using.js"
+import { Signout } from "../signout/signout.jsx"
+import { NavLinksLabels } from "./labels/labels.en.js"
+const { getStoreStates, setSelectors, useSelector } = await import("/scripts/states.js")
 const { NavLink } = await import("/scripts/routing.js")
-
 
 export const NavLinks = (_, elem) =>
 {
-  const authenticated = useSelector(elem, "authenticated", selectAuthenticated)
-  const labels = useLabels(elem)
+  const labels = useLabels(elem, NavLinksLabels.name, NavLinksLabels)
+  const isAuthenticated = useSelector(setSelectors(elem), "is-authenticated", selectIsAuthenticated, getStoreStates(elem))
 
-  return <>
-    <style css={css}></style>
-    {
-      authenticated?
-        <nav>
-          <NavLink class="navlinks-link" href={RoutePaths.home}>{labels["home"]}</NavLink>
-          <NavLink class="navlinks-link" href={RoutePaths.info}>{labels["info"]}</NavLink>
-        </nav>:
-        <nav>
-          <NavLink class="navlinks-link" href={RoutePaths.login}>{labels["login"]}</NavLink>
-        </nav>
-    }
-  </>
+  return isAuthenticated?
+    <>
+      <style css={css}></style>
+      <NavLink class="navlink" href={getHomePath()}>{labels["home"]}</NavLink>
+      <NavLink class="navlink" href={getContactPath()}>{labels["contact"]}</NavLink>
+      <Signout class="signout"></Signout>
+    </>:
+    <>
+      <style css={css}></style>
+      <NavLink class="navlink" href={getLoginPath()}>{labels["login"]}</NavLink>
+      <NavLink class="navlink" href={getContactPath()}>{labels["contact"]}</NavLink>
+    </>
 }
 
 const css = `
-.navlinks-link {
-  margin-left: 1rem
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }`

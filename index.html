@@ -4,18 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/index.css">
+    <link rel="shortcut icon" href="/frontend-app/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/frontend-app/index.css">
     <title>Identity app</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "/scripts/rendering.js": "./frontend-app/scripts/rendering.js",
+          "/scripts/routing.js": "./frontend-app/scripts/routing.js",
+          "/scripts/fetching.js": "./frontend-app/scripts/fetching.js",
+          "/scripts/states.js": "./frontend-app/scripts/states.js",
+          "/scripts/validating.js": "./frontend-app/scripts/validating.js",
+          "/testing.http.js": "./frontend-testing/mod.js"
+        }
+      }
+    </script>
   </head>
   <body>
     <script type="module" async>
-      // TODO: use scripts versions [rendering.1.0.0.js]
-      import { render } from "/scripts/rendering.js"
-      import { settings } from "/settings.js"
-      import { Root } from "/index.js"
-
-      render(React.createElement(Root, settings), document.body)
+      // (await import("./frontend-app/designing.jsx")).designMainElements();
+      // (await import("./frontend-components/app/designing.jsx")).designApp();
+      // (await import("./frontend-components/contact/designing.jsx")).designContact();
+      (await import("./frontend-components/login/designing.jsx")).designLogin();
+      // (await import("./frontend-components/auth-providers/designing.jsx")).designAuthProviders();
+      // (await import("./frontend-components/signin-cookies/designing.jsx")).designSigninCookies();
+      // (await import("./frontend-components/forbidden/designing.jsx")).designForbidden();
+      // (await import("./frontend-components/messages/designing.jsx")).designMessages();
+      // (await import("./frontend-components/user/designing.jsx")).designUser();
+      // (await import("./frontend-components/header/designing.jsx")).designHeader();
+      // (await import("./frontend-components/footer/designing.jsx")).designFooter();
     </script>
   </body>
 </html>

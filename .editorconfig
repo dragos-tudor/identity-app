@@ -1,3 +1,8 @@
 [*.Tests.cs]
 dotnet_diagnostic.ASP0016.severity = none # ASPNET Code analysis: Do not return a value from RequestDelegate
 dotnet_diagnostic.CA1707.severity = none # Naming: Identifiers should not contain underscores
+
+[*.cs]
+dotnet_diagnostic.CA1062.severity = none # Design: Validate arguments of public methods [non-nullable reference types => clear intention => no rule]
+dotnet_diagnostic.CA2007.severity = none # Reliability: Do not directly await a Task
+dotnet_diagnostic.CA2007.exclude_async_void_methods = false # CA2007 rule option

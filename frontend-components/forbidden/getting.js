@@ -1,4 +1,3 @@
-import { getLocationSearchParams } from "../../frontend-shared/locations/getting.js"
+import { getSearchParam } from "../../frontend-locations/mod.js"
 
-export const getErrorDescription = (location) =>
-  getLocationSearchParams(location).get("description")
+export const getErrorDescription = (location) => decodeURIComponent(getSearchParam(location, "description"))
