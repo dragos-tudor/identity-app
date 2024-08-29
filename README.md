@@ -21,7 +21,7 @@ Identity SPA application *use* and *test* *functional* [C#](https://github.com/d
 ```sh
 dotnet restore
 dotnet build --no-restore
-./start.sh // docker exec -it -u root identity-app bash => chmod u+x ./start.sh
+./start.sh # docker exec -it -u root identity-app bash => chmod u+x ./start.sh
 ```
 
 ### Remarks
