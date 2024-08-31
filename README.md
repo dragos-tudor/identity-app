@@ -1,6 +1,6 @@
 ### Identity app
-Identity SPA application *use* and *test* *functional* [C#](https://github.com/dragos-tudor/backend-security)/[JS](https://github.com/dragos-tudor/frontend-rendering) libraries in *real-world* scenarios.
-- backend: main focus is on cookies and OAuth2 authentications.w
+Identity SPA application use my *functional* [C#](https://github.com/dragos-tudor/backend-security)/[JS](https://github.com/dragos-tudor/frontend-rendering) libraries in *real-world* scenarios.
+- backend: main focus is on cookies and OAuth2 authentications.
 - frontend: main focus is on rendering, routing and states management using jsx components.
 
 ### Identity app libraries
@@ -21,11 +21,12 @@ Identity SPA application *use* and *test* *functional* [C#](https://github.com/d
 ```sh
 dotnet restore
 dotnet build --no-restore
-./start.sh # docker exec -it -u root identity-app bash => chmod u+x ./start.sh
+./start.sh # docker exec -it -u root identity-app chmod u+x /workspaces/identity-app/start.sh
 ```
 
 ### Remarks
-- tested only with Google OAuth2 provider. Twitter and Facebook were unable to create-new/reopen-closed accounts [!?].
-- [Deno](https://deno.com/) used to build frontend.
+- tested only with Google OAuth2 provider. Reopen-closed accounts Twitter & Facebook wip.
+- [Deno](https://deno.com/) used to build app frontend.
+= [ASPNET Core](https://dotnet.microsoft.com/en-us/apps/aspnet) used to build and run api/app backend.
 
 *SIMPLE ALWAYS MEANS SIMPLE*
