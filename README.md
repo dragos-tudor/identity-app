@@ -26,7 +26,7 @@ dotnet build --no-restore
 
 ### Remarks
 - tested only with Google OAuth2 provider. Reopen-closed accounts Twitter & Facebook wip.
-- [ASPNET Core](https://dotnet.microsoft.com/en-us/apps/aspnet) used to run backend api/app.
-- [Deno](https://deno.com/) used to build frontend app/components.
+- [ASPNET Core](https://dotnet.microsoft.com/en-us/apps/aspnet) used to run backend api & app.
+- [Deno](https://deno.com/) used to build frontend app & components.
 
 *SIMPLE ALWAYS MEANS SIMPLE*
