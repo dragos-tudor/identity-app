@@ -1,3 +1,4 @@
+#pragma warning disable CA1305
 
 namespace Identity.Api;
 
@@ -10,6 +11,6 @@ partial class ApiFuncs
       .UseCors()
       .UseAuthentication(AuthenticateCookie)
       .UseAuthorization(
-        ChallengeAuth<CookieAuthenticationOptions>,
-        ForbidAuth<CookieAuthenticationOptions>);
+        (context, _) => UnauthenticateCookie(context).ToString(),
+        (context, _) => UnauthorizeCookie(context).ToString());
 }

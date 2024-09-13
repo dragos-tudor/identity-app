@@ -10,9 +10,9 @@ partial class ApiFuncs
     app.MapGet("/accounts/status", GetAccountStatus);
     app.MapGet("/users", GetUser).RequireAuthorization();
 
-    app.MapFacebook(ResolveService<FacebookOptions>(app.Services), SignInCookie);
-    app.MapGoogle(ResolveService<GoogleOptions>(app.Services), SignInCookie);
-    app.MapTwitter(ResolveService<TwitterOptions>(app.Services), SignInCookie);
+    app.MapFacebook(ResolveRequiredService<FacebookOptions>(app.Services), SignInCookie);
+    app.MapGoogle(ResolveRequiredService<GoogleOptions>(app.Services), SignInCookie);
+    app.MapTwitter(ResolveRequiredService<TwitterOptions>(app.Services), SignInCookie);
     return app;
   }
 }
