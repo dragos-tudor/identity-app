@@ -1,6 +1,6 @@
 <Project>
   <PropertyGroup>
-    <SecurityVersion>1.0.0-alpha2</SecurityVersion>
+    <SecurityVersion>1.0.0-alpha3</SecurityVersion>
   </PropertyGroup>
 
   <ItemGroup>

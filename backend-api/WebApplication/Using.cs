@@ -11,6 +11,6 @@ partial class ApiFuncs
       .UseCors()
       .UseAuthentication(AuthenticateCookie)
       .UseAuthorization(
-        (context, _) => UnauthenticateCookie(context).ToString(),
-        (context, _) => UnauthorizeCookie(context).ToString());
+        (context, _) => ChallengeCookie(context),
+        (context, _) => ForbidCookie(context));
 }
